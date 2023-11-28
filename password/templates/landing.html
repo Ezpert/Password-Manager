@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+
+<p>Please enter a Username and password </p>
+
+
+
+<form action="getData"method="post">
+    {% csrf_token %}
+    <h>username: </h>
+    <input type="text" id="username">
+    <h>password: </h>
+    <input type="text" id="password">
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>
