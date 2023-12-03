@@ -10,6 +10,6 @@ class Passwords(models.Model):
     password = models.CharField(max_length=255)
 
 
-class nonCSVPasswords(models.Model):
+class NonCSV(models.Model):
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
