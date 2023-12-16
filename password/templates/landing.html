@@ -8,16 +8,18 @@
 
 <div>
 
-<p>Please enter a Username and password </p>
-
-<form action="getData/" method="POST">
+<p>enter passwords?</p>
+<form action="login/" method="GET">
     {% csrf_token %}
-    <h>username: </h>
-    <input type="text" id="username" name="username">
-    <h>password: </h>
-    <input type="password" id="password" name="password">
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="passwordsButton">
+</form>
+
+<p>generate passwords?</p>
+<form action="generatePassword/" method="GET">
+    {% csrf_token %}
+
+    <input type="submit" value="passwordsButton">
 </form>
 
 </div>

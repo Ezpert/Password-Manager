@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% if messages %}
+ <h1{% if messages.tags %} class="{{ messages.tags }}"{% endif %}>
+   {% for message in messages %}
+     {{ message }}
+   {% endfor %}
+ </h1>
+{% endif %}
+
+<h1>please sign in: </h1>
+<form action="passwordEntry/" method="POST">
+{% csrf_token %}
+    <h>username: </h>
+    <input type="text" id="username" name="username">
+    <h>password: </h>
+    <input type="password" id="password" name="password">
+
+    <input type="submit" value="Submit">
+
+</form>
+
+
+#Big difference between /signUp/ and signUp/
+#/signUp/ basically resets the url. if we didnt have the / in the front ( ie: signUp/ )
+# then it gives an error because it would be looking for login/signUp/
+# we want the sign up page url to be independent of the login one.
+
+
+<form action="/signUp/" method="GET">
+    <input type="submit" name="signUp" id="signUp">
+</form>
+
+
+</body>
+</html>
