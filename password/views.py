@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import NonCSV, Passwords
 from django.contrib import messages
-
+from .forms import PasswordForm
 
 def landing(request):
     return render(request, 'landing.html')
@@ -19,6 +19,14 @@ def getData(request):
         usernameR = 'NULL'
 
     return render(request, 'confirmation.html', {'usernameGet': usernameR})
+
+def generate_password(request):
+    form = PasswordForm(request.POST or None)
+    if form.is_valid():
+        password = form.cleaned_data['password']
+    else:
+        password = ''
+    return render(request, 'PasswordGenerator.html', {'form': form, 'password': password})
 
 
 def passwordEntry(request):

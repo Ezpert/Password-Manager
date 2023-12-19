@@ -15,12 +15,19 @@
     <input type="submit" value="passwordsButton">
 </form>
 
-<p>generate passwords?</p>
-<form action="generatePassword/" method="GET">
-    {% csrf_token %}
 
-    <input type="submit" value="passwordsButton">
-</form>
+
+</div>
+
+<div>
+
+    <p>Password Generator page</p>
+
+    <!-- Link to the Password Generator page -->
+    <form action="generate_password/" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Go to password generator">
+    </form>
 
 </div>
 
