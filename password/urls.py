@@ -25,7 +25,10 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('login/passwordEntry/', views.passwordEntry, name='passwordEntry'),
     path('passwordEntry/getData/', views.getData, name='confirmation'),
-    # This URL pattern maps the 'generate_password/' URL to the generate_password view.
-    path('generate_password/', views.generate_password, name='generate_password'),
-    # other paths...
+
+    # URL pattern for rendering the password generator page.
+    path('generate_password/', views.password_generator, name='generate_password'),
+
+    # URL pattern for the AJAX request to generate a new password.
+    path('generate-password-ajax/', views.generate_password_ajax, name='generate_password_ajax'),
 ]

@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from .models import NonCSV, Passwords
 from django.contrib import messages
 from .forms import PasswordForm
-
+from django.http import JsonResponse
+import random
+import string
 def landing(request):
     return render(request, 'landing.html')
 
@@ -20,14 +22,17 @@ def getData(request):
 
     return render(request, 'confirmation.html', {'usernameGet': usernameR})
 
-def generate_password(request):
-    form = PasswordForm(request.POST or None)
-    if form.is_valid():
-        password = form.cleaned_data['password']
-    else:
-        password = ''
-    return render(request, 'PasswordGenerator.html', {'form': form, 'password': password})
 
+
+def password_generator(request):
+    form = PasswordForm()
+    return render(request, 'PasswordGenerator.html', {'form': form})
+
+def generate_password_ajax(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10))
+        return JsonResponse({'password': password})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def passwordEntry(request):
     if request.method == 'POST':
@@ -55,3 +60,4 @@ def login(request):
         user = NonCSV(username=usernameR, password=passwordR)
         user.save()
     return render(request, 'loginPage.html')
+
