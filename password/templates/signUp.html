@@ -9,10 +9,10 @@
 <form action="/login/" method="POST">
 {% csrf_token %}
     <h1>SIGN UP: </h1>
-    <h>username: </h>
-    <input type="text" id="username" name="username">
-    <h>password: </h>
-    <input type="password" id="password" name="password">
+    <h1>username: </h1>
+    <label for="username"></label><input type="text" id="username" name="username">
+    <h1>password: </h1>
+    <label for="password"></label><input type="password" id="password" name="password">
 
     <input type="submit" value="Submit">
 

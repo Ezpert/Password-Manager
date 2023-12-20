@@ -8,16 +8,16 @@
 
 
 {% if messages %}
- <h1{% if messages.tags %} class="{{ messages.tags }}"{% endif %}>
+ <h1>{% if messages.tags %} class="{{ messages.tags }}"{% endif %}>
    {% for message in messages %}
      {{ message }}
    {% endfor %}
  </h1>
 {% endif %}
 
-<h1>please sign in: </h1>
 <form action="passwordEntry/" method="POST">
 {% csrf_token %}
+    <h1>please sign in: </h1>
     <h>username: </h>
     <input type="text" id="username" name="username">
     <h>password: </h>
@@ -35,7 +35,9 @@
 
 
 <form action="/signUp/" method="GET">
-    <input type="submit" name="signUp" id="signUp">
+
+    <h1>SIGN UP: </h1>
+    <input type="submit" name="signUp" id="signUp" value="Sign Up">
 </form>
 
 

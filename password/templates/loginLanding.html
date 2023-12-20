@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+
+<p>enter passwords?</p>
+<form action="/getData/" method="GET">
+    {% csrf_token %}
+    <input type="submit" value="passwordsButton">
+</form>
+
+
+
+
+
+    <p>check passwords?</p>
+<form action="passwordEntry/" method="GET">
+    {% csrf_token %}
+    <input type="submit" value="passwordsButton">
+</form>
+
+
+</div>
+
+<div>
+
+    <p>Password Generator page</p>
+
+    <!-- Link to the Password Generator page -->
+    <form action="/generate_password/" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Go to password generator">
+    </form>
+
+</div>
+
+</body>
+</html>

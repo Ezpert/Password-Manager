@@ -12,21 +12,27 @@ def landing(request):
 
 
 def getData(request):
+    loginUserGet = request.session.get('usernameGet', '')
     if request.method == 'POST':
         # Extract data from the POST request
-        username = request.POST.get('username')
-        website = request.POST.get('website')
-        password = request.POST.get('password')
 
-        # Assuming you're saving this data to a model
-        user_data = Passwords(username=username, url=website, password=password)
-        user_data.save()
+        if request.POST.get('username') == '' or request.POST.get('website') == '' or request.POST.get('password') == '':
+            return JsonResponse({'status': 'error'}, status=400)
+        else:
+            username = request.POST.get('username')
+            website = request.POST.get('website')
+            password = request.POST.get('password')
 
-        # Return a JSON response indicating success
-        return JsonResponse({'status': 'success'})
+            # Assuming you're saving this data to a model
+            user_data = Passwords(name=loginUserGet, username=username, url=website, password=password)
+            user_data.save()
+
+            # Return a JSON response indicating success
+            return JsonResponse({'status': 'success'})
 
     # If it's not a POST request, return an error response
-    return JsonResponse({'status': 'error'}, status=400)
+    # return JsonResponse({'status': 'error'}, status=400)
+    return render(request, 'passwordEntry.html', {'usernameGet': loginUserGet})
 
 
 def password_generator(request):
@@ -84,10 +90,16 @@ def passwordEntry(request):
 
         user = NonCSV(username=usernameR, password=passwordR)
         if NonCSV.objects.filter(username=usernameR, password=passwordR).exists():
-            return render(request, 'passwordEntry.html', {'usernameGet': usernameR})
+            # Save the username of the Main user for later inside the browser session
+            request.session['usernameGet'] = usernameR
+            return render(request, 'loginLanding.html', {'usernameGet': usernameR})
         else:
             messages.error(request, 'User not found: Please try Again!')
             return redirect('login')
+
+
+def loginLanding(request):
+    return render(request, 'loginLanding.html')
 
 
 def signUp(request):
