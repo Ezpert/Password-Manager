@@ -44,7 +44,7 @@ def passwordEntry(request):
         if NonCSV.objects.filter(username=usernameR, password=passwordR).exists():
             return render(request, 'passwordEntry.html', {'usernameGet': usernameR})
         else:
-            messages.error(request, 'USER NOT FOUND@!@##!#!#@@#$!@#!@#')
+            messages.error(request, 'User not found: Please try Again!')
             return redirect('login')
 
 
