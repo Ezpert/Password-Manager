@@ -29,15 +29,33 @@ def password_generator(request):
     return render(request, 'PasswordGenerator.html', {'form': form})
 
 def generate_password_ajax(request):
-    length = request.GET.get('length', 10)  # Default to 10 if not provided
+    length = request.GET.get('length', 10)
+    include_numbers = request.GET.get('include_numbers') == 'true'
+    include_lowercase = request.GET.get('include_lowercase') == 'true'
+    include_uppercase = request.GET.get('include_uppercase') == 'true'
+    include_symbols = request.GET.get('include_symbols') == 'true'
+
     try:
         length = int(length)
-        if length <= 0 or length > 20:  # You can set a maximum length as needed
+        if length <= 0 or length > 20:
             raise ValueError
     except ValueError:
         return JsonResponse({'error': 'Invalid length'}, status=400)
 
-    password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
+    characters = ''
+    if include_numbers:
+        characters += string.digits
+    if include_lowercase:
+        characters += string.ascii_lowercase
+    if include_uppercase:
+        characters += string.ascii_uppercase
+    if include_symbols:
+        characters += string.punctuation
+
+    if not characters:
+        return JsonResponse({'error': 'No character types selected'}, status=400)
+
+    password = ''.join(random.choice(characters) for _ in range(length))
     return JsonResponse({'password': password})
 
 def passwordEntry(request):
