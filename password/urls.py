@@ -24,7 +24,7 @@ urlpatterns = [
     path('signUp/', views.signUp, name='signUp'),
     path('login/', views.login, name='login'),
     path('login/passwordEntry/', views.passwordEntry, name='passwordEntry'),
-    path('passwordEntry/getData/', views.getData, name='confirmation'),
+    path('login/passwordEntry/getData/', views.getData, name='confirmation'),
 
     # URL pattern for rendering the password generator page.
     path('generate_password/', views.password_generator, name='generate_password'),

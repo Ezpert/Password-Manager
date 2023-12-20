@@ -5,6 +5,8 @@ from .forms import PasswordForm
 from django.http import JsonResponse
 import random
 import string
+
+
 def landing(request):
     return render(request, 'landing.html')
 
@@ -23,10 +25,10 @@ def getData(request):
     return render(request, 'confirmation.html', {'usernameGet': usernameR})
 
 
-
 def password_generator(request):
     form = PasswordForm()
     return render(request, 'PasswordGenerator.html', {'form': form})
+
 
 def generate_password_ajax(request):
     length = request.GET.get('length', 10)
@@ -69,6 +71,7 @@ def generate_password_ajax(request):
 
     return JsonResponse({'passwords': passwords})
 
+
 def passwordEntry(request):
     if request.method == 'POST':
         # process data
@@ -95,4 +98,3 @@ def login(request):
         user = NonCSV(username=usernameR, password=passwordR)
         user.save()
     return render(request, 'loginPage.html')
-
