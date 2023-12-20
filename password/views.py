@@ -13,22 +13,20 @@ def landing(request):
 
 def getData(request):
     if request.method == 'POST':
-        usernameR = request.POST['username']
-        websiteR = request.POST['website']
-        passwordR = request.POST['password']
-        user = Passwords(url=websiteR, username=usernameR, password=passwordR)
-        user.save()
+        # Extract data from the POST request
+        username = request.POST.get('username')
+        website = request.POST.get('website')
+        password = request.POST.get('password')
 
-        # Pass the data to the template
-        return render(request, 'confirmation.html', {
-            'usernameGet': usernameR,
-            'website': websiteR,
-            'webUsername': usernameR,  # Assuming this is the username for the website
-            'webPassword': passwordR
-        })
-    else:
-        # Handle the case for non-POST requests
-        return render(request, 'confirmation.html')
+        # Assuming you're saving this data to a model
+        user_data = Passwords(username=username, url=website, password=password)
+        user_data.save()
+
+        # Return a JSON response indicating success
+        return JsonResponse({'status': 'success'})
+
+    # If it's not a POST request, return an error response
+    return JsonResponse({'status': 'error'}, status=400)
 
 
 def password_generator(request):
