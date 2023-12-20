@@ -29,10 +29,16 @@ def password_generator(request):
     return render(request, 'PasswordGenerator.html', {'form': form})
 
 def generate_password_ajax(request):
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10))
-        return JsonResponse({'password': password})
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+    length = request.GET.get('length', 10)  # Default to 10 if not provided
+    try:
+        length = int(length)
+        if length <= 0 or length > 20:  # You can set a maximum length as needed
+            raise ValueError
+    except ValueError:
+        return JsonResponse({'error': 'Invalid length'}, status=400)
+
+    password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
+    return JsonResponse({'password': password})
 
 def passwordEntry(request):
     if request.method == 'POST':
