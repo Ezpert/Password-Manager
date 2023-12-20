@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Confirmation</title>
 </head>
 <body>
 
 <div>
-    Thanks {{ usernameGet }}!
-
-
+    {% if usernameGet and website and webUsername and webPassword %}
+        <p>Thanks {{ usernameGet }}!</p>
+        <p>Website: {{ website }}</p>
+        <p>Username for Website: {{ webUsername }}</p>
+        <p>Password for Website: {{ webPassword }}</p>
+    {% else %}
+        <p>Information not provided.</p>
+    {% endif %}
 </div>
-
-
 
 </body>
 </html>

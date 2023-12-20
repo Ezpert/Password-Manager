@@ -19,10 +19,16 @@ def getData(request):
         user = Passwords(url=websiteR, username=usernameR, password=passwordR)
         user.save()
 
+        # Pass the data to the template
+        return render(request, 'confirmation.html', {
+            'usernameGet': usernameR,
+            'website': websiteR,
+            'webUsername': usernameR,  # Assuming this is the username for the website
+            'webPassword': passwordR
+        })
     else:
-        usernameR = 'NULL'
-
-    return render(request, 'confirmation.html', {'usernameGet': usernameR})
+        # Handle the case for non-POST requests
+        return render(request, 'confirmation.html')
 
 
 def password_generator(request):
