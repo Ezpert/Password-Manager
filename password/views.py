@@ -34,10 +34,12 @@ def generate_password_ajax(request):
     include_lowercase = request.GET.get('include_lowercase') == 'true'
     include_uppercase = request.GET.get('include_uppercase') == 'true'
     include_symbols = request.GET.get('include_symbols') == 'true'
+    no_duplicates = request.GET.get('no_duplicates') == 'true'
+    quantity = int(request.GET.get('quantity', 1))
 
     try:
         length = int(length)
-        if length <= 0 or length > 20:
+        if length <= 0 or length > 20:  # Set maximum length as per your requirements
             raise ValueError
     except ValueError:
         return JsonResponse({'error': 'Invalid length'}, status=400)
@@ -55,8 +57,17 @@ def generate_password_ajax(request):
     if not characters:
         return JsonResponse({'error': 'No character types selected'}, status=400)
 
-    password = ''.join(random.choice(characters) for _ in range(length))
-    return JsonResponse({'password': password})
+    passwords = []
+    for _ in range(quantity):
+        if no_duplicates:
+            if len(characters) < length:
+                return JsonResponse({'error': 'Not enough unique characters for the requested length'}, status=400)
+            password = ''.join(random.sample(characters, length))
+        else:
+            password = ''.join(random.choice(characters) for _ in range(length))
+        passwords.append(password)
+
+    return JsonResponse({'passwords': passwords})
 
 def passwordEntry(request):
     if request.method == 'POST':
