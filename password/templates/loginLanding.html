@@ -9,7 +9,7 @@
 <div>
 
 <p>enter passwords?</p>
-<form action="/getData/" method="GET">
+<form action="/passwordEntry/" method="GET">
     {% csrf_token %}
     <input type="submit" value="passwordsButton">
 </form>
@@ -19,7 +19,7 @@
 
 
     <p>check passwords?</p>
-<form action="passwordEntry/" method="GET">
+<form action="/passwordVault/" method="GET">
     {% csrf_token %}
     <input type="submit" value="passwordsButton">
 </form>

@@ -11,17 +11,23 @@ def landing(request):
     return render(request, 'landing.html')
 
 
-def getData(request):
+def passwordEntry(request):
+    # Get the username of the current user from the browser cache
     loginUserGet = request.session.get('usernameGet', '')
     if request.method == 'POST':
         # Extract data from the POST request
+        username = request.POST.get('username')
+        website = request.POST.get('website')
+        password = request.POST.get('password')
 
-        if request.POST.get('username') == '' or request.POST.get('website') == '' or request.POST.get('password') == '':
-            return JsonResponse({'status': 'error'}, status=400)
+        if request.POST.get('username') == '' or request.POST.get('website') == '' or request.POST.get(
+                'password') == '':
+            return JsonResponse({'status': 'error', 'type': 'empty', 'message': 'Empty Field!'}, status=400)
         else:
-            username = request.POST.get('username')
-            website = request.POST.get('website')
-            password = request.POST.get('password')
+
+            if Passwords.objects.filter(name=loginUserGet, url=website, username=username, password=password).exists():
+                return JsonResponse({'status': 'error', 'type': 'duplicate', 'message': 'Password already exists.'},
+                                    status=400)
 
             # Assuming you're saving this data to a model
             user_data = Passwords(name=loginUserGet, username=username, url=website, password=password)
@@ -30,9 +36,19 @@ def getData(request):
             # Return a JSON response indicating success
             return JsonResponse({'status': 'success'})
 
-    # If it's not a POST request, return an error response
-    # return JsonResponse({'status': 'error'}, status=400)
     return render(request, 'passwordEntry.html', {'usernameGet': loginUserGet})
+
+
+def addDuplicate(request):
+    loginUserGet = request.session.get('usernameGet', '')
+    if request.method == 'POST':
+        # Extract data from the POST request
+        username = request.POST.get('username')
+        website = request.POST.get('website')
+        password = request.POST.get('password')
+        user_data = Passwords(name=loginUserGet, username=username, url=website, password=password)
+        user_data.save()
+        return JsonResponse({'status': 'success'})
 
 
 def password_generator(request):
@@ -51,7 +67,7 @@ def generate_password_ajax(request):
 
     try:
         length = int(length)
-        if length <= 0 or length > 20:  # Set maximum length as per your requirements
+        if length <= 0 or length > 100:  # Set maximum length as per your requirements
             raise ValueError
     except ValueError:
         return JsonResponse({'error': 'Invalid length'}, status=400)
@@ -82,7 +98,7 @@ def generate_password_ajax(request):
     return JsonResponse({'passwords': passwords})
 
 
-def passwordEntry(request):
+def loginLanding(request):
     if request.method == 'POST':
         # process data
         usernameR = request.POST['username']
@@ -98,8 +114,8 @@ def passwordEntry(request):
             return redirect('login')
 
 
-def loginLanding(request):
-    return render(request, 'loginLanding.html')
+def passwordVault(request):
+    return render(request, 'passwordVault.html')
 
 
 def signUp(request):
