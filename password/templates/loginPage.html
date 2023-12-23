@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login Page</title>
 </head>
 <body>
 
 
 {% if messages %}
- <h1>{% if messages.tags %} class="{{ messages.tags }}"{% endif %}>
+ <h1>{% if messages.tags %} class="{{ messages.tags }}"{% endif %}
    {% for message in messages %}
      {{ message }}
    {% endfor %}
@@ -29,7 +29,7 @@
 
 
 {##Big difference between /signUp/ and signUp/#}
-{##/signUp/ basically resets the url. if we didnt have the / in the front ( ie: signUp/ )#}
+{##/signUp/ basically resets the url. if we didn't have the / in the front ( ie: signUp/ )#}
 {## then it gives an error because it would be looking for login/signUp/#}
 {## we want the sign up page url to be independent of the login one.#}
 

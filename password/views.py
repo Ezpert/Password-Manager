@@ -1,13 +1,16 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import NonCSV, Passwords
 from django.contrib import messages
 from .forms import PasswordForm
 from django.http import JsonResponse
 import random
 import string
+from django.views.decorators.csrf import csrf_exempt
+from .forms import EditEntryForm
 
 
 def landing(request):
+
     return render(request, 'landing.html')
 
 
@@ -113,9 +116,41 @@ def loginLanding(request):
             messages.error(request, 'User not found: Please try Again!')
             return redirect('login')
 
+    return render(request, 'loginLanding.html')
+
 
 def passwordVault(request):
-    return render(request, 'passwordVault.html')
+    loginUserGet = request.session.get('usernameGet', '')
+    # Query the database for all entries that match the adminUser
+    entries = Passwords.objects.filter(name=loginUserGet)
+    return render(request, 'passwordVault.html', {'entries': entries, 'adminUser': loginUserGet})
+
+
+def edit_entry(request, id):
+    entry = get_object_or_404(Entry, id=id)
+    if request.method == 'GET':
+        form = EditEntryForm(initial={'username': entry.username, 'password': entry.password})
+        return render(request, 'passwordVault.html', {'form': form})
+    elif request.method == 'POST':
+        form = EditEntryForm(request.POST)
+        if form.is_valid():
+            entry.username = form.cleaned_data['username']
+            entry.password = form.cleaned_data['password']
+            entry.save()
+            return redirect('entries')
+
+
+@csrf_exempt
+def toggle_edit_mode(request):
+  if request.method == 'POST':
+      id = request.POST['id']
+      print(f"Toggling edit mode for entry {id}")
+      request.session['edit'] = True
+      print(f"Edit mode toggled for entry {id}")
+      print(request.session.get('edit', False))
+      return JsonResponse({'status': 'success', 'edit': True})
+  else:
+      return JsonResponse({'status': 'error'})
 
 
 def signUp(request):

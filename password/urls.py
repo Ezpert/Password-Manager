@@ -26,6 +26,8 @@ urlpatterns = [
     path('passwordEntry/', views.passwordEntry, name='confirmation'),
     path('login/loginLanding/', views.loginLanding, name='passwordEntry'),
     path('passwordVault/', views.passwordVault, name='passwordEntry'),
+    path('edit_entry/<int:id>/', views.edit_entry, name='edit_entry'),
+    path('toggle_edit_mode/', views.toggle_edit_mode, name='toggle_edit_mode'),
     path('passwordEntry/addDuplicate/', views.addDuplicate, name='addDuplicate'),
     # URL pattern for rendering the password generator page.
     path('generate_password/', views.password_generator, name='generate_password'),
