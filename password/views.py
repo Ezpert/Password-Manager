@@ -161,18 +161,6 @@ def editEntry(request, entryid):
         return redirect('passwordVault')
 
 
-# def edit_entry(request, id):
-#     entry = get_object_or_404(Entry, id=id)
-#     if request.method == 'GET':
-#         form = EditEntryForm(initial={'username': entry.username, 'password': entry.password})
-#         return render(request, 'passwordVault.html', {'form': form})
-#     elif request.method == 'POST':
-#         form = EditEntryForm(request.POST)
-#         if form.is_valid():
-#             entry.username = form.cleaned_data['username']
-#             entry.password = form.cleaned_data['password']
-#             entry.save()
-#             return redirect('entries')
 def editPage(request, entryid):
     # When you use filter(), it returns a QuerySet, which can contain multiple objects.
     # Even if there's only one matching object, it's still returned inside a QuerySet.
@@ -185,17 +173,7 @@ def editPage(request, entryid):
     return render(request, 'editPage.html', {'entry': entry})
 
 
-# @csrf_exempt
-# def toggle_edit_mode(request):
-#   if request.method == 'POST':
-#       id = request.POST['id']
-#       print(f"Toggling edit mode for entry {id}")
-#       request.session['edit'] = True
-#       print(f"Edit mode toggled for entry {id}")
-#       print(request.session.get('edit', False))
-#       return JsonResponse({'status': 'success', 'edit': True})
-#   else:
-#       return JsonResponse({'status': 'error'})
+
 
 
 def signUp(request):
