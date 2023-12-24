@@ -5,12 +5,11 @@ from .forms import PasswordForm
 from django.http import JsonResponse
 import random
 import string
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .forms import EditEntryForm
 
 
 def landing(request):
-
     return render(request, 'landing.html')
 
 
@@ -119,38 +118,84 @@ def loginLanding(request):
     return render(request, 'loginLanding.html')
 
 
-def passwordVault(request):
+def passwordVault(request, message=None):
+    # Your existing code here...
     loginUserGet = request.session.get('usernameGet', '')
     # Query the database for all entries that match the adminUser
     entries = Passwords.objects.filter(name=loginUserGet)
+
     return render(request, 'passwordVault.html', {'entries': entries, 'adminUser': loginUserGet})
 
 
-def edit_entry(request, id):
-    entry = get_object_or_404(Entry, id=id)
-    if request.method == 'GET':
-        form = EditEntryForm(initial={'username': entry.username, 'password': entry.password})
-        return render(request, 'passwordVault.html', {'form': form})
-    elif request.method == 'POST':
-        form = EditEntryForm(request.POST)
-        if form.is_valid():
-            entry.username = form.cleaned_data['username']
-            entry.password = form.cleaned_data['password']
-            entry.save()
-            return redirect('entries')
-
-
 @csrf_exempt
-def toggle_edit_mode(request):
-  if request.method == 'POST':
-      id = request.POST['id']
-      print(f"Toggling edit mode for entry {id}")
-      request.session['edit'] = True
-      print(f"Edit mode toggled for entry {id}")
-      print(request.session.get('edit', False))
-      return JsonResponse({'status': 'success', 'edit': True})
-  else:
-      return JsonResponse({'status': 'error'})
+def delete_entry(request, entry_id):
+    try:
+        Passwords.objects.get(id=entry_id).delete()
+        return JsonResponse({'status': 'success'})
+    except Passwords.DoesNotExist:
+        return JsonResponse({'status': 'error'})
+
+
+def editEntry(request, entryid):
+    print("editEntry start")
+    # Your existing code here...
+
+    if request.method == 'POST':
+        entry = Passwords.objects.get(id=entryid)
+        if 'username' in request.POST:
+            newUser = request.POST['username']
+        else:
+            newUser = entry.username  # Keep the old username
+        if 'password' in request.POST:
+            newPass = request.POST['password']
+        else:
+            newPass = entry.password  # Keep the old password
+
+        # Update the username
+        entry.username = newUser
+        entry.password = newPass
+
+        # Save the changes to the database
+        entry.save()
+
+        return redirect('passwordVault')
+
+
+# def edit_entry(request, id):
+#     entry = get_object_or_404(Entry, id=id)
+#     if request.method == 'GET':
+#         form = EditEntryForm(initial={'username': entry.username, 'password': entry.password})
+#         return render(request, 'passwordVault.html', {'form': form})
+#     elif request.method == 'POST':
+#         form = EditEntryForm(request.POST)
+#         if form.is_valid():
+#             entry.username = form.cleaned_data['username']
+#             entry.password = form.cleaned_data['password']
+#             entry.save()
+#             return redirect('entries')
+def editPage(request, entryid):
+    # When you use filter(), it returns a QuerySet, which can contain multiple objects.
+    # Even if there's only one matching object, it's still returned inside a QuerySet.
+    # When you're trying to access entry.url, entry.username, and entry.password in your template,
+    # Django is looking for url, username, and password attributes on the QuerySet itself, not on the objects inside it.
+    # If you're sure that there will only be one object with the given id, you can use get() instead of filter().
+    # get() returns a single object directly, not a QuerySet:
+    entry = Passwords.objects.get(id=entryid)
+
+    return render(request, 'editPage.html', {'entry': entry})
+
+
+# @csrf_exempt
+# def toggle_edit_mode(request):
+#   if request.method == 'POST':
+#       id = request.POST['id']
+#       print(f"Toggling edit mode for entry {id}")
+#       request.session['edit'] = True
+#       print(f"Edit mode toggled for entry {id}")
+#       print(request.session.get('edit', False))
+#       return JsonResponse({'status': 'success', 'edit': True})
+#   else:
+#       return JsonResponse({'status': 'error'})
 
 
 def signUp(request):

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .button {
+   display: inline-block;
+   padding: 10px 20px;
+   color: white;
+   font-size: 10px;
+   cursor: pointer;
+   text-align: center;
+   text-decoration: none;
+   outline: none;
+            background-color: rgb(128, 128, 128);
+   border: none;
+   border-radius: 15px;
+   box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: rgb(134, 133, 133);}
+
+.button:active {
+    background-color: rgb(128, 128, 128);
+   box-shadow: 0 5px #666;
+   transform: translateY(4px);
+}
+.container
+{
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+
+
+        <h1>Edit username or password</h1>
+    <form action="{% url 'editEntry' entry.id %}" method="POST" class="container">
+        <div>
+        {% csrf_token %}
+        <p>Website: {{entry.url}}</p>
+        <p>Username:</p>
+        <input type="text" name="username" value="{{ entry.username }}">
+        <p>Password:</p>
+         <input type="password" id="password" name="password" value="{{entry.password}}">
+            <button type="button" id="toggleButton">
+                 <img class=""id="toggleImage" src="{% static 'password/openeye.png'%}" style="width: 20px; height: 20px;">
+            </button>
+
+
+        </div>
+
+        <div>
+        <a href="{% url 'passwordVault' %}" class="button">Cancel</a>
+
+        <input type="submit" value="Save" class="button">
+        </div>
+    </form>
+
+
+<script>
+    document.getElementById('toggleButton').addEventListener('click', function() {
+ var passwordInput = document.getElementById('password');
+ var toggleImage = document.getElementById('toggleImage');
+
+
+ if (passwordInput.type === 'password') {
+ passwordInput.type = 'text';
+ toggleImage.src = "{% static 'password/slasheye.png' %}";
+ } else {
+ passwordInput.type = 'password';
+ toggleImage.src = "{% static 'password/openeye.png' %}";
+ }
+
+});
+</script>
+
+
+</body>
+</html>
