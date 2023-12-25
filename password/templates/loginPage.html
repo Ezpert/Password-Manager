@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/loginPage.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <title>Login Page</title>
 </head>
@@ -15,30 +21,73 @@
  </h1>
 {% endif %}
 
-<form action="loginLanding/" method="POST">
-{% csrf_token %}
-    <h1>please sign in: </h1>
-    <h>username: </h>
-    <input type="text" id="username" name="username">
-    <h>password: </h>
-    <input type="password" id="password" name="password">
+<div class="container-div">
+<div class="greeting-info-div">
 
-    <input type="submit" value="Submit">
+    <div class="logo-div">
 
-</form>
+        <img src="{% static 'password/RubradLogoCorrect.png' %}" class="rubrad-logo">
+        <h1 class="logo-text">Rubrad</h1>
 
+
+    </div>
+    <div class="greeting-text-div">
+
+        <h1 class="greeting-header">Welcome to Rubrad on the web</h1>
+        <p class="greeting-paragraph">Access your logins and personal data in the web app — quickly and securely.</p>
+    </div>
+
+</div>
+
+
+<div class="login-info-div">
 
 {##Big difference between /signUp/ and signUp/#}
 {##/signUp/ basically resets the url. if we didn't have the / in the front ( ie: signUp/ )#}
 {## then it gives an error because it would be looking for login/signUp/#}
 {## we want the sign up page url to be independent of the login one.#}
 
+    <div class="sign-up-div">
 
-<form action="/signUp/" method="GET">
+        <form action="/signUp/" method="GET"  class="sign-up-form">
 
-    <h1>SIGN UP: </h1>
-    <input type="submit" name="signUp" id="signUp" value="Sign Up">
-</form>
+
+            <h1 class="sign-up-text">New to Rubrad? </h1>
+            <input type="submit" name="signUp" id="signUp" value="Create an Account" class="sign-up-button">
+        </form>
+    </div>
+
+
+<div class="login-div">
+    <form action="loginLanding/" method="POST" class="login-form">
+    {% csrf_token %}
+        <h1 class="login-prompt-text">Log in to Rubrad </h1>
+
+        <input class="login-username"type="text" id="username" name="username" value="Username">
+
+        <input class="login-password" type="password" id="password" name="password" value="Password" required>
+
+
+
+        <input class="login-submit"type="submit" value="Log in">
+
+    </form>
+
+</div>
+
+
+
+
+
+</div>
+
+</div>
+
+<script>
+
+
+
+</script>
 
 
 </body>
