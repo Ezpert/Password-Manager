@@ -173,9 +173,6 @@ def editPage(request, entryid):
     return render(request, 'editPage.html', {'entry': entry})
 
 
-
-
-
 def signUp(request):
     return render(request, 'signUp.html')
 

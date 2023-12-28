@@ -14,11 +14,11 @@
 
 
 {% if messages %}
- <h1>{% if messages.tags %} class="{{ messages.tags }}"{% endif %}
+<ul class="messages">
    {% for message in messages %}
-     {{ message }}
+   <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
    {% endfor %}
- </h1>
+</ul>
 {% endif %}
 
 <div class="container-div">
@@ -63,9 +63,9 @@
     {% csrf_token %}
         <h1 class="login-prompt-text">Log in to Rubrad </h1>
 
-        <input class="login-username"type="text" id="username" name="username" value="Username">
+        <input class="login-username" type="text" id="username" name="username" value="Username" required>
 
-        <input class="login-password" type="password" id="password" name="password" value="Password" required>
+        <input class="login-password" type="password" id="password" name="password" value="Password" >
 
 
 

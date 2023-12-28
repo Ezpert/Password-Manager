@@ -1,22 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signUp.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
-    <title>Rubrad</title>
+    <title>Login Page</title>
 </head>
 <body>
 
-<form action="/login/" method="POST">
-{% csrf_token %}
-    <h1>Start using Rubrad for free </h1>
-    <h1>username: </h1>
-    <label for="username"></label><input type="text" id="username" name="username">
-    <h1>password: </h1>
-    <label for="password"></label><input type="password" id="password" name="password">
+<div class="container-div">
 
-    <input type="submit" value="Submit">
 
-</form>
+
+    <div class="greeting-info-div">
+
+    <div class="logo-div">
+
+        <img src="{% static 'password/RubradLogoCorrect.png' %}" class="rubrad-logo">
+        <h1 class="logo-text">Rubrad</h1>
+
+
+    </div>
+    <div class="greeting-text-div">
+
+        <h1 class="greeting-header">Welcome to Rubrad on the web</h1>
+        <p class="greeting-paragraph">Access your logins and personal data in the web app — quickly and securely.</p>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="signup-info-div">
+
+
+
+    <div class="login-redirect-div">
+
+        <form action="/login/" method="GET"  class="login-redirect-form">
+
+
+            <h1 class="login-redirect-text">Already use Rubrad? </h1>
+            <input type="submit" name="login" id="login" value="Log in" class="login-redirect-button">
+        </form>
+    </div>
+
+
+
+    <form action="/login/" method="POST"  class="signup-form">
+    {% csrf_token %}
+
+
+        <h1 class="signup-prompt-text">Start using Rubrad for free </h1>
+
+        <p class="signup-prompt-description">Enter the Info you'd like to associate with your Rubrad account.</p>
+
+        <div class="signup-input-div">
+        <input class="signup-username" type="text" id="username" name="username" value="Username" required>
+
+        <input class="signup-password" type="password" id="password" name="password" required>
+
+        </div>
+
+        <div class="signup-button-div">
+
+        <input class="signup-submit" type="submit" value="Submit">
+        </div>
+
+
+    </form>
+
+
+
+
+</div>
 
 
 

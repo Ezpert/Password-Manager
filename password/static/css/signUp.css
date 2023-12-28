@@ -63,38 +63,32 @@ html, body {
 .greeting-paragraph
 {
     font-size: 15px;
-    font-weight: 500;
  color: rgba(88, 89, 89, 0.87);
+    font-weight: 500;
     font-family: Montserrat, sans-serif;
 
 }
 
-
-.login-info-div
+.signup-info-div
 {
-
-    padding: 0px 110px 0px 100px;
+    width: 80vh;
+    padding: 0px 0px 200px 100px;
     background: whitesmoke;
-    width: 50vh;
-
 }
 
-
-.sign-up-div
+.login-redirect-div
 {
-    margin: 0px 0px 125px 0px;
-
+    margin: 0px 0px 215px 0px;
 
 
 }
-.sign-up-form
+.login-redirect-form
 {
     display: flex;
     align-items: center;
-    margin: 38px 0px 0px 150px;
+    margin: 38px 0px 0px 450px;
 }
-
-.sign-up-text
+.login-redirect-text
 {
     font-size: 14px;
     font-weight: 400;
@@ -103,7 +97,7 @@ html, body {
     font-family: Montserrat, sans-serif;
 
 }
-.sign-up-button
+.login-redirect-button
 {
     padding: 10px 18px 15px 18px;
     height: 38px;
@@ -117,37 +111,60 @@ html, body {
 
 }
 
-.login-form
+.signup-form
 {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     width: 80%;
-    padding-left: 50px;
 
 
 
 }
-.login-prompt-text
+.signup-prompt-text
 {
-    font-family: Montserrat, sans-serif;
-    font-weight: 300;
+     font-family: Montserrat, sans-serif;
+    font-weight: 700;
     color: rgba(88, 89, 89, 0.87);
+    margin: 23px 0px 10px 0px;
+
+
 
 }
-.login-username
+.signup-prompt-description
 {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(88, 89, 89, 0.87);
+    font-family: Montserrat, sans-serif;
+
+
+}
+
+.signup-input-div
+{
+    display: flex;
+
+}
+
+
+
+.signup-username
+{
+    flex: 1;
     height: 55px;
     font-family: Montserrat, sans-serif;
-    padding: 3px 20px 3px 20px;
     font-size: 18px;
-    margin: 0px 0px 40px 0px;
+    color: rgba(88, 89, 89, 0.87);
+    padding: 3px 20px 3px 20px;
     border-radius: 10px;
-    border-width: 1px;
     border-style: solid;
-
+    border-width: 1px;
 }
-.login-password
+.signup-password
 {
+
+    flex: 1;
     height: 55px;
     font-family: Montserrat, sans-serif;
     font-size: 18px;
@@ -156,15 +173,14 @@ html, body {
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
-    margin: 0px 0px 60px 0px;
+    margin: 0px 0px 30px 10px;
+
 }
 
-
-
-
-.login-submit
+.signup-submit
 {
-    padding: 15px 20px 15px 20px;
+
+     padding: 15px 20px 15px 20px;
     border: none;
     border-radius: 10px;
     font-family: Montserrat, sans-serif;
@@ -172,5 +188,15 @@ html, body {
     font-weight: 700;
     background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
 }
+
+.signup-button-div
+{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+
+
 
 
