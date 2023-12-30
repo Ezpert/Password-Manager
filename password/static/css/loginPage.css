@@ -4,6 +4,37 @@ html, body {
  border: none;
 }
 
+.messages
+{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: whitesmoke;
+    padding: 10px 15px 10px 10px;
+    border-radius: 50px;
+   top: 100px; /* This moves the div 50 pixels down from the top of its nearest positioned ancestor (or from the viewport if no ancestors are positioned) */
+   right: 85dvh;
+
+
+}
+.error
+{
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    color: rgba(88, 89, 89, 0.87);
+
+}
+
+.error-img
+{
+    margin: 0px 5px 0px 0px;
+    width: 30px;
+
+    height: 30px;
+}
+
 .container-div
 {
     display: flex;
@@ -75,7 +106,7 @@ html, body {
 
     padding: 0px 110px 0px 100px;
     background: whitesmoke;
-    width: 50vh;
+    width: 50dvh;
 
 }
 
@@ -110,7 +141,8 @@ html, body {
     border-style: none;
     border-radius: 5px;
     font-family: Montserrat, sans-serif;
-    color: white;
+    cursor: pointer;
+     color: whitesmoke;
     font-weight: 700;
     font-size: 13px;
     background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
@@ -168,8 +200,9 @@ html, body {
     border: none;
     border-radius: 10px;
     font-family: Montserrat, sans-serif;
-    color: white;
+    color: whitesmoke;
     font-weight: 700;
+    cursor: pointer;
     background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
 }
 

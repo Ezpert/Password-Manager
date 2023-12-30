@@ -108,14 +108,15 @@ def loginLanding(request):
 
         user = NonCSV(username=usernameR, password=passwordR)
         if NonCSV.objects.filter(username=usernameR, password=passwordR).exists():
-            # Save the username of the Main user for later inside the browser session
             request.session['usernameGet'] = usernameR
+            # Save the username of the Main user for later inside the browser session
             return render(request, 'loginLanding.html', {'usernameGet': usernameR})
         else:
             messages.error(request, 'User not found: Please try Again!')
             return redirect('login')
 
-    return render(request, 'loginLanding.html')
+    usernameR = request.session.get('usernameGet', '')
+    return render(request, 'loginLanding.html', {'usernameGet': usernameR})
 
 
 def passwordVault(request, message=None):

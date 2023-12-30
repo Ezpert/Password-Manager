@@ -1,0 +1,195 @@
+html, body {
+ margin: 0;
+ padding: 0;
+ border: none;
+}
+
+.container-div
+{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: whitesmoke;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 0px 0px;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+}
+.header-div
+{
+    position: absolute;
+    display: flex;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    height: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo-div
+{
+    display: flex;
+
+}
+.rubrad-logo
+{
+    width: 75px;
+    top: 5px;
+    left: 0px;
+    height: 75px;
+}
+.logo-text
+{
+     color: lavender;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: Montserrat, sans-serif;
+}
+
+.center-header-text
+{
+    font-size: 30px;
+     color: lavender;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: Montserrat, sans-serif;
+
+}
+.header-image
+{
+    width: 20px;
+    height: 20px;
+}
+.header-button
+{
+    margin: 0px 100px 0px 0px;
+    border: none;
+    font-family: Montserrat, sans-serif;
+    background: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: 0.5s;
+
+
+}
+.header-button:hover
+{
+    opacity: 0.5;
+    border: whitesmoke;
+
+
+}
+.header-button:active
+{
+    opacity: 0.2;
+}
+
+.main-content-div
+{
+    margin: 100px 0px 0px 0px;
+    border-radius: 60px;
+    height: 75dvh;
+    width: 100dvh;
+    background: whitesmoke;
+
+}
+
+.greeting-div
+{
+
+    margin: 50px 0px 0px 75px;
+
+}
+
+.greeting-header
+{
+    font-family: Montserrat, sans-serif;
+    color: lavender;
+    font-size: 35px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: 700;
+
+}
+
+.greeting-description
+{
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(88, 89, 89, 0.87);
+    font-family: Montserrat, sans-serif;
+}
+
+.action-buttons-div
+{
+    margin: 80px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+
+
+}
+
+
+.add-passwords-button
+{
+     padding: 10px 18px 15px 18px;
+    height: 70px;
+    width: 600px;
+    border-style: none;
+    border-radius: 5px;
+    font-family: Montserrat, sans-serif;
+    cursor: pointer;
+     color: whitesmoke;
+    font-weight: 700;
+    font-size: 13px;
+    background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
+    transition: all 0.3s ease-in-out;
+}
+.password-vault-button
+{
+    padding: 10px 18px 15px 18px;
+    height: 70px;
+    width: 600px;
+    border-style: none;
+    border-radius: 5px;
+    font-family: Montserrat, sans-serif;
+    cursor: pointer;
+     color: whitesmoke;
+    font-weight: 700;
+    font-size: 13px;
+    background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
+    transition: all 0.3s ease-in-out;
+}
+.password-generator-submit
+{
+
+    padding: 10px 18px 15px 18px;
+    height: 70px;
+    width: 600px;
+    border-style: none;
+    border-radius: 5px;
+    font-family: Montserrat, sans-serif;
+    cursor: pointer;
+     color: whitesmoke;
+    font-weight: 700;
+    font-size: 13px;
+    background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.password-generator-submit:hover,.password-vault-button:hover,
+.add-passwords-button:hover
+{
+    transform: scale(1.3);
+}
+
+.password-generator-submit:active,.password-vault-button:active,
+.add-passwords-button:active
+{
+    transform: scale(1.2);
+}
+
+

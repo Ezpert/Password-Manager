@@ -1,45 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>Landing Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/loginLanding.css' %}">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
 
-<div>
-<form action="/login" method="GET">
-        <input type="submit" value="Logout <-">
+<div class="container-div">
+
+{#correct syntax for images!~#}
+{#<img src="{% static '/password/exampleimage.png' %}" >#}
+
+<div class="header-div">
+
+
+    <div class="logo-div">
+
+        <img src="{% static 'password/RubradLogoCorrect.png' %}" class="rubrad-logo">
+        <h1 class="logo-text">Rubrad</h1>
+
+
+    </div>
+
+    <div class="center-header-text-div">
+        <h1 class="center-header-text">Login Menu</h1>
+    </div>
+
+    <div style="display: flex">
+
+    <img class="header-image" src="{% static '/password/user.svg' %}">
+    <form action="/login" method="GET">
+            <input type="submit" value="Log out" class="header-button">
     </form>
-<p>enter passwords?</p>
-<form action="/passwordEntry/" method="GET">
-    {% csrf_token %}
-    <input type="submit" value="passwordsButton">
-</form>
-
-
-
-
-
-    <p>check passwords?</p>
-<form action="/passwordVault/" method="GET">
-    {% csrf_token %}
-    <input type="submit" value="passwordsButton">
-</form>
-
+    </div>
 
 </div>
 
-<div>
+<div class="main-content-div">
 
-    <p>Password Generator page</p>
+<div class="greeting-div">
+        <h1 class="greeting-header">Welcome {{ usernameGet }}! Let's get you going.</h1>
+        <p class="greeting-description">You're on your way to an easier life online.</p>
+
+</div>
+
+
+
+<div class="action-buttons-div">
+
+<form action="/passwordEntry/" method="GET" class="add-passwords-submit">
+    {% csrf_token %}
+    <input class="add-passwords-button" type="submit" value="Add Passwords">
+</form>
+
+
+
+
+<form action="/passwordVault/" method="GET" class="password-vault-submit">
+    {% csrf_token %}
+    <input class="password-vault-button" type="submit" value="Password Vault">
+</form>
 
     <!-- Link to the Password Generator page -->
-    <form action="/generate_password/" method="POST">
+    <form action="/generate_password/" method="POST"  class="passwords-generator-submit">
         {% csrf_token %}
-        <input type="submit" value="Go to password generator">
+        <input class="password-generator-submit" type="submit" value="Password Generator">
     </form>
+</div>
 
 </div>
 
+
+</div>
 </body>
 </html>
