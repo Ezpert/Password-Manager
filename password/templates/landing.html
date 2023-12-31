@@ -3,33 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+
 </head>
 <body>
 
-<div>
+    <div class = "page-body">
 
-<p>enter passwords?</p>
-<form action="login/" method="GET">
-    {% csrf_token %}
+        <div class="greeting-info-div">
 
-    <input type="submit" value="passwordsButton">
-</form>
+            <div class="logo-div">
+
+                <img src="{% static 'password/RubradLogoCorrect.png' %}" class="rubrad-logo">
+                <h1 class="logo-text">Rubrad</h1>
 
 
+            </div>
+            <div class="greeting-text-div">
 
-</div>
+                <h1 class="greeting-header">Welcome to Rubrad on the web</h1>
+                <p class="greeting-paragraph">Access your logins and personal data in the web app — quickly and securely.</p>
+            </div>
 
-<div>
+    </div>
+    <div class = "password-generator-service">
 
-    <p>Password Generator page</p>
-
-    <!-- Link to the Password Generator page -->
-    <form action="generate_password/" method="POST">
+    <p class = "check-services-text">Wanna check out our services?</p>
+    <form action="login/" method="GET">
         {% csrf_token %}
-        <input type="submit" value="Go to password generator">
+
+        <input type="submit" value="Login page" class = "login-button">
     </form>
 
-</div>
 
-</body>
+
+
+        <p class = "check-services-text">Check out our free to use password generator!</p>
+
+        <!-- Link to the Password Generator page -->
+        <form action="generate_password/" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Go to password generator" class = "login-button">
+        </form>
+
+    </div>
+
+
+    </div>
+
+    </body>
 </html>

@@ -1,0 +1,98 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: none;
+   }
+
+
+
+.page-body{
+
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+
+
+
+}
+
+.greeting-info-div
+{
+    flex: 1;
+    background: #7F7FD5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin: 0px 0px 0px 0px;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 30px;*/
+
+
+}
+
+.logo-div{
+    display: flex;
+    padding: 35px 0px 130px 60px;
+}
+
+.rubrad-logo{
+    width: 75px;
+    height: 75px;
+}
+
+.logo-text{
+    color: lavender;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: Montserrat, sans-serif;
+}
+
+.greeting-header{
+    margin-bottom: 0px;
+    font-size: 57px;
+     max-width: 770px;
+    color: lavender;
+    font-family: Montserrat, sans-serif;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.greeting-paragraph{
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(88, 89, 89, 0.87);
+    font-family: Montserrat, sans-serif;
+}
+
+
+.password-generator-service{
+    padding: 0px 110px 0px 100px;
+    background: whitesmoke;
+    width: 50vh;
+    text-align: center;
+}
+
+.check-services-text{
+    margin-bottom: 0px;
+    font-size: 35px;
+     max-width: 770px;
+    color: whitesmoke;
+    font-family: Montserrat, sans-serif;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.login-button{
+    padding: 15px 20px 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-family: Montserrat, sans-serif;
+    color: white;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #91EAE4 0%, #86A8E7 51%, #7F7FD5 100%);
+    align
+
+}
+
