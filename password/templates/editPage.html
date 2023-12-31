@@ -6,47 +6,60 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <style>
-        .button {
-   display: inline-block;
-   padding: 10px 20px;
-   color: white;
-   font-size: 10px;
-   cursor: pointer;
-   text-align: center;
-   text-decoration: none;
-   outline: none;
-            background-color: rgb(128, 128, 128);
-   border: none;
-   border-radius: 15px;
-   box-shadow: 0 9px #999;
-}
+        {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/editPage.css' %}">
 
-.button:hover {background-color: rgb(134, 133, 133);}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Red+Hat+Display:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-.button:active {
-    background-color: rgb(128, 128, 128);
-   box-shadow: 0 5px #666;
-   transform: translateY(4px);
-}
-.container
-{
-    display: block;
-}
-
-    </style>
 </head>
 <body>
 
+ <div class = "banner-page">
+        <div class = logo-div>
+
+        <img class = "Rubrad-logo" src = "{% static 'password/RubradLogoCorrect.png' %}">
+        <p class = "logo-text">Rubrad</p>
+
+        </div>
+
+
+
+
+
+        <div class = login-button-div>
+            <form action = '/login' method = "GET">
+
+
+                <input type = "submit" value = "Log In" class = "login-button">
+            </form>
+        </div>
+
+        <div class = "home-button-div">
+            <form action = "/" method = "GET" class = "sign-up-form">
+
+                <input type = 'submit' value = "Home" class = "home-button">
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+ <div class = "page-body">
 
         <h1>Edit username or password</h1>
     <form action="{% url 'editEntry' entry.id %}" method="POST" class="container">
         <div>
         {% csrf_token %}
-        <p>Website: {{entry.url}}</p>
-        <p>Username:</p>
+        <p class = "website-text">Website: {{entry.url}}</p>
+        <p class = "username-text">Username:</p>
         <input type="text" name="username" value="{{ entry.username }}">
-        <p>Password:</p>
+        <p class = "password-text">Password:</p>
          <input type="password" id="password" name="password" value="{{entry.password}}">
             <button type="button" id="toggleButton">
                  <img class=""id="toggleImage" src="{% static 'password/openeye.png'%}" style="width: 20px; height: 20px;">
@@ -55,13 +68,24 @@
 
         </div>
 
-        <div>
-        <a href="{% url 'passwordVault' %}" class="button">Cancel</a>
+        <div class = "save-cancel-div">
 
-        <input type="submit" value="Save" class="button">
+            <div class = "buttons-div">
+            <input type="submit" value="Save" class="button">
+            </div>
+
+
+            <div class = "buttons-div">
+                <a href="{% url 'passwordVault' %}" class="button">Cancel</a>
+            </div>
+
+
+
         </div>
+
     </form>
 
+    </div>
 
 <script>
     document.getElementById('toggleButton').addEventListener('click', function() {
